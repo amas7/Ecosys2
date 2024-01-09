@@ -113,7 +113,11 @@ public class Intrudor extends Element implements Eater{
                 ", huntPeriod='" + huntPeriod + '\'' +
                 '}';
     }
-
+    /**
+     * Définit le comportement alimentaire d'un intru, la vie de l'animal consomé est mis à 0
+     *
+     * @param animal L'objet {@code Animal} représentant l'entité à consommer.
+     */
     @Override
     public void eat(Animal animal) {
         animal.setLife(0);
