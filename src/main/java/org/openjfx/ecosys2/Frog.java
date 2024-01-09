@@ -10,7 +10,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 /**
- * La classe Fly représente un animal de type mouche.
+ * La classe Frog représente un animal de type grenouille.
  */
 public class Frog extends Animal implements Eater{
     private static int maxLife = 50;
@@ -50,8 +50,8 @@ public class Frog extends Animal implements Eater{
     }
 
     /**
-     * Cette méthode permet à l'animal actuel de manger un autre animal, tel qu'une mouche.
-     * Elle augmente la vie de l'animal actuel de la vie de l'animal consommé
+     * Cette méthode permet à la grenouille de manger un autre animal, tel qu'une mouche.
+     * Elle augmente la vie de la grenouille de la vie de l'animal consommé
      * et met la vie de l'animal consommé à 0.
      *
      * @param animal L'animal à manger.
