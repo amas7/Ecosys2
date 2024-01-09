@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * La classe Fly représente un element de type intrus.
+ * La classe Intrudor représente un element de type intrus qui est un mangeur.
  * Un intrus posède un nom, une saison de chasse et une combinaison de touche clavier permettant de le vaincre
  */
 
@@ -113,7 +113,11 @@ public class Intrudor extends Element implements Eater{
                 ", huntPeriod='" + huntPeriod + '\'' +
                 '}';
     }
-
+    /**
+     * Définit le comportement alimentaire d'un intru, la vie de l'animal consomé est mise à 0
+     *
+     * @param animal L'objet {@code Animal} représentant l'entité à consommer.
+     */
     @Override
     public void eat(Animal animal) {
         animal.setLife(0);
