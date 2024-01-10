@@ -56,6 +56,7 @@ public class Game extends Application {
     @Override
     public void start(Stage primaryStage) {
         Group root = new Group();
+        try {
 
         //background image
         Image backgroundImage = new Image(getClass().getResourceAsStream("/images/bg.png"));
@@ -70,6 +71,9 @@ public class Game extends Application {
 
         //adds the background image view to the root
         root.getChildren().add(backgroundImageView);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         //displays frogs
@@ -303,11 +307,12 @@ public class Game extends Application {
                         Line tongue = createTongue(frog.getImageView(), fly.getImageView());
                         root.getChildren().add(tongue); //displaying
 
-
+                        try{
                         playSound("target/classes/sound/normal-hitnormal.mp3");
+                        } catch (Exception e) {
+                            e.printStackTrace();}
 
-
-                        // Delay for 0.5 seconds
+                            // Delay for 0.5 seconds
                         PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
                         pause.setOnFinished(e -> root.getChildren().remove(tongue));    //removes tongue
                         pause.play();
@@ -332,8 +337,11 @@ public class Game extends Application {
 
                     // Display "fail.png" at the bottom right of the frog
                     displayFailImage(frog.getImageView(), root);
-
+                    try{
                     playSound("target/classes/sound/miss.mp3");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 if (ecosystem.getTabFly().isEmpty()) {
@@ -358,34 +366,39 @@ public class Game extends Application {
         return tongue;
     }
 
-    private void displayFailImage(ImageView frogImageView, Group root) {
-        Image failImage = new Image(getClass().getResourceAsStream("/images/fail.png"));
-        ImageView failImageView = new ImageView(failImage);
+    private void displayFailImage(ImageView frogImageView, Group root){
+            try {
+                Image failImage = new Image(getClass().getResourceAsStream("/images/fail.png"));
+                ImageView failImageView = new ImageView(failImage);
 
-        double desiredWidth = 10; // Adjust as needed
-        double desiredHeight = 10; // Adjust as needed
+                double desiredWidth = 10; // Adjust as needed
+                double desiredHeight = 10; // Adjust as needed
 
-        failImageView.setFitWidth(desiredWidth);
-        failImageView.setFitHeight(desiredHeight);
+                failImageView.setFitWidth(desiredWidth);
+                failImageView.setFitHeight(desiredHeight);
 
-        // sets position at the bottom right of the frog
-        failImageView.setX(frogImageView.getX() + frogImageView.getFitWidth() - failImageView.getFitWidth());
-        failImageView.setY(frogImageView.getY() + frogImageView.getFitHeight() - failImageView.getFitHeight());
+                // sets position at the bottom right of the frog
+                failImageView.setX(frogImageView.getX() + frogImageView.getFitWidth() - failImageView.getFitWidth());
+                failImageView.setY(frogImageView.getY() + frogImageView.getFitHeight() - failImageView.getFitHeight());
 
-        root.getChildren().add(failImageView); //display
-        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(0.5), failImageView);    //bounce effect
-        translateTransition.setByY(10); // Move up
-        translateTransition.setAutoReverse(true);
-        translateTransition.play();
+                root.getChildren().add(failImageView); //display
+                TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(0.5), failImageView);    //bounce effect
+                translateTransition.setByY(10); // Move up
+                translateTransition.setAutoReverse(true);
+                translateTransition.play();
 
-        //delay
-        PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
-        pause.setOnFinished(e -> root.getChildren().remove(failImageView));
-        pause.play();
-    }
+                //delay
+                PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
+                pause.setOnFinished(e -> root.getChildren().remove(failImageView));
+                pause.play();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
     private void stopGameAndShowFinalScore(Group root) {
         // white background
+        try {
         ImageView bgImageView = new ImageView(new Image(getClass().getResource("/images/white_bg.png").toExternalForm()));
         bgImageView.setFitWidth(WINDOW_WIDTH);
         bgImageView.setFitHeight(WINDOW_HEIGHT);
@@ -424,5 +437,8 @@ public class Game extends Application {
         StackPane stackPane = new StackPane();
         stackPane.getChildren().addAll(bgImageView, vbox);
         root.getChildren().add(stackPane);  //dsiplays replay button
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
